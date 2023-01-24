@@ -1,4 +1,4 @@
-import * as types from '../constants'
+import * as types from './actionTypes'
 
 export const addCartItems = item => ({
   type: types.ADD_CART_ITEMS,

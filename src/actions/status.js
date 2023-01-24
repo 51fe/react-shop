@@ -1,14 +1,13 @@
-import * as types from '../constants'
+import * as types from './actionTypes'
 
-export const startLoad = ()  => ({
+export const startLoad = () => ({
+  type: types.PRELOAD,
+})
+
+export const endLoad = () => ({
   type: types.LOADED,
 })
 
-export const endLoad = ()  => ({
-  type: types.LOADED,
-})
-
-export const handleError = message  => ({
-  type: types.ERROR,
-  message
+export const handleError = () => ({
+  type: types.ERROR
 })

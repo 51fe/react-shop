@@ -1,11 +1,9 @@
-import * as types from '../constants'
+import * as types from '../actions/actionTypes'
 
-const initialState = {
+export default (state = {
   message: '',
-  code: -2
-}
-
-export default (state = initialState, action) => {
+  code: -1
+}, action) => {
   switch (action.type) {
     case types.PRELOAD:
       return {

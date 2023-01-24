@@ -18,7 +18,7 @@ export function validate(event) {
    * add error class
    */
   function addErrorClass() {
-    if (className.indexOf('error') == -1) {
+    if (className.indexOf('error') === -1) {
       event.target.className = className + ' error'
     }
   }
@@ -27,7 +27,7 @@ export function validate(event) {
    * remove error class
    */
   function removeErrorClass() {
-    if (className.indexOf('error') != -1) {
+    if (className.indexOf('error') !== -1) {
       event.target.className = className.substr(0, className.length - 6)
     }
   }
@@ -85,5 +85,5 @@ export function validateAll(event) {
   inputs.forEach(input => {
     input.dispatchEvent(new Event('blur'))
   })
-  return inputs.every(input => input.className.indexOf('error') == -1)
+  return inputs.every(input => input.className.indexOf('error') === -1)
 }

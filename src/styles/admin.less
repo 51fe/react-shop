@@ -1,0 +1,63 @@
+@import 'variables';
+
+.admin {
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+  .admin-manufacturers {
+    th {
+      &:first-child {
+        width: 90%
+      }
+
+      &:last-child {
+        text-align: center;
+      }
+
+      a {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .admin-menu a {
+    display: block;
+    border: 1px solid @red-dark;
+    padding: 10px 15px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    color: @grey-black;
+
+    :hover {
+      color: @grey-dark;
+    }
+
+    &.active {
+      border-left-width: 8px;
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+
+      &.admin {
+        padding-top: 15px;
+        padding-bottom: 15px;
+
+        .admin-manufacturers {
+          th:first-child {
+            width: 80%
+          }
+        }
+      }
+    }
+
+    .admin-menu {
+      margin-bottom: 15px;
+    }
+  }
+}

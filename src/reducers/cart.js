@@ -1,4 +1,4 @@
-import * as types from '../constants'
+import * as types from '../actions/actionTypes'
 
 const initialState =
   {
@@ -12,47 +12,43 @@ const initialState =
  * @param product
  * @param many
  */
-const addToCart = (state, item, many = false) => {
-  const record = state.items.find(p => {
-    return p._id === item._id
+const addToCart = (state, data, many = false) => {
+  const items = [...state.items]
+  const found = items.find(item => {
+    return item._id === data._id
   })
-  if (!record) {
-    state.items.push({
-      ...item,
-      quantity: state.count
-    })
-  } else {
-    if (many) {
-      record.quantity += state.count
-    } else {
-      record.quantity += 1
-    }
+  const count = many ? state.count : 1
+  // add
+  if (!found) {
+   items.unshift({...data, quantity: count })
+  } else { // update
+    found.quantity += count
   }
-  localStorage.setItem('CART', JSON.stringify(state.items));
+  localStorage.setItem('CART', JSON.stringify(items))
+  return items
 }
 
 export default function cart(state = initialState, action) {
   switch (action.type) {
     case types.ADD_CART_ITEMS:
-      addToCart(state, action.item, true)
       return {
         ...state,
+        items: addToCart(state, action.item, true)
       }
 
     case types.ADD_CART_ITEM:
-      addToCart(state, action.item)
-      console.log(...state);
       return {
         ...state,
+        items: addToCart(state, action.item)
       }
 
     case types.REMOVE_CART_ITEM:
       // Called when removing one item from cart
-      const index = state.items.findIndex(p => p._id === action.id)
-      state.items.splice(index, 1);
-      // localStorage.setItem('CART', JSON.stringify(state.items));
+      const items = state.items.filter(item => item._id !== action.id);
+      localStorage.setItem('CART', JSON.stringify(items))
       return {
         ...state,
+        items
       }
 
     /**
@@ -61,13 +57,15 @@ export default function cart(state = initialState, action) {
      * @param item
      */
     case types.UPDATE_CART_ITEM:
-      let product = state.items.find(p => p._id === action.item.id)
-      if (product) {
-        product.quantity = action.item.count
-      }
-      localStorage.setItem('CART', JSON.stringify(state.items));
+      const payload = action.item
+      const updateItems = state.items.map(item => (item._id === payload.id ? {
+        ...item,
+        quantity: payload.count
+      } : item))
+      localStorage.setItem('CART', JSON.stringify(updateItems));
       return {
-        ...state
+        ...state,
+        items: updateItems
       }
 
     /**
@@ -77,9 +75,9 @@ export default function cart(state = initialState, action) {
      */
     case types.WILL_UPDATE_CART_ITEM:
       // Changing count to prepare to update cart
-      state.count = action.count
       return {
-        ...state
+        ...state,
+        count: action.count
       }
 
     default:
