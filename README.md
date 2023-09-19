@@ -2,13 +2,9 @@
 
 > A shopping cart project with MongoDB + Express + React + Node.js + Redux + React Router. If you like the project, please star me, thanks!
 
-- Snapshot
+## Snapshot
 
-![react-shop.jpg](https://www.riafan.com/uploads/1902/react-shop.jpg)
-
-- Tutorial
-
-[React shopping cart](https://www.riafan.com/react-shop.html)
+![react-shop.jpg](https://51fe.site/uploads/1902/react-shop.jpg)
 
 ## Features
 - With Admin Page

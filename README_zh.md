@@ -2,13 +2,9 @@
 
 > 使用MongoDB + Express + React + Node.js + Redux + React Router开发的购物模块。如果您喜欢本项目, 欢迎点赞，谢谢！
 
-- 截图
+## 截图
 
-![react-shop.jpg](https://www.riafan.com/uploads/1902/react-shop.jpg)
-
-- 教程
-
-[React电商项目实战](https://www.riafan.com/react-shop.html)
+![react-shop.jpg](https://51fe.site/uploads/1902/react-shop.jpg)
 
 ## 特性
 - Admin页面
